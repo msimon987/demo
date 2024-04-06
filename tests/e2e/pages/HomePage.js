@@ -11,4 +11,8 @@ exports.HomePage = class HomePage {
 
     };
 
+    async registeredUserWelcomeLinkVisibilityTest(userName) {
+        await expect(this.page.getByRole('link', { name: userName })).toBeVisible();
+    };
+
 }; 

@@ -48,8 +48,8 @@ test('Verify invalid input validation message is displayed', async ({page}) => {
     await loginPage.passwordInputField.fill('invalidPassword');
     await page.getByRole('button', { name: 'Log in' }).click();
     await page.waitForLoadState('networkidle');
-    await expect(loginPage.usernameInputField).toHaveValue('invalidUsername');
-    await expect(loginPage.passwordInputField).toHaveValue('invalidPassword');
+    await expect.soft(loginPage.usernameInputField).toHaveValue('invalidUsername');
+    await expect.soft(loginPage.passwordInputField).toHaveValue('invalidPassword');
     await expect(loginPage.loginPopup).toHaveScreenshot('invalidInputLoginPopup.png');
     
 });
@@ -67,8 +67,8 @@ test('Verify invalid password input validation message is displayed', async ({pa
     await loginPage.passwordInputField.fill('invalidPassword');
     await page.getByRole('button', { name: 'Log in' }).click();
     await page.waitForLoadState('networkidle');
-    await expect(loginPage.usernameInputField).toHaveValue('validUser2');
-    await expect(loginPage.passwordInputField).toHaveValue('invalidPassword');
+    await expect.soft(loginPage.usernameInputField).toHaveValue('validUser2');
+    await expect.soft(loginPage.passwordInputField).toHaveValue('invalidPassword');
     await expect(loginPage.loginPopup).toHaveScreenshot('invalidPasswordInputLoginPopup.png');
     
 });
@@ -81,7 +81,7 @@ test('Verify close buttons close the login popup', async ({page}) => {
     await loginPage.logInLink.click();
     await loginPage.topCloseBtn.click();
     await loginPage.loginPopup.waitFor({state:"hidden"});
-    await expect(homePage.pageHeader).toHaveScreenshot('homePageHeader.png', {mask: [homePage.productSlider]});
+    await expect.soft(homePage.pageHeader).toHaveScreenshot('homePageHeader.png', {mask: [homePage.productSlider]});
     await loginPage.logInLink.click();
     await loginPage.bottomCloseBtn.click();
     await loginPage.loginPopup.waitFor({state:"hidden"});
