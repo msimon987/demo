@@ -19,3 +19,8 @@ config:
 scenarios:
   - engine: playwright  
     testFunction: "artilleryScript"
+hooks:
+  afterEach: 
+    - log: "Generating Artillery report"
+    - save:
+        json: "artillery_report.json"

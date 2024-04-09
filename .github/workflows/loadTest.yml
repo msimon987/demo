@@ -31,13 +31,22 @@ jobs:
         run: |
           artillery script C:\Users\Mario\Desktop\demo\artillery.yml
 
-      - name: Create Artillery Playwright test report json file
-        run: |
-          artillery script C:\Users\Mario\Desktop\demo\artillery.yml --output report.json
+      - name: Save Artillery Report
+        uses: actions/upload-artifact@v2
+        with: 
+            name: artillery-report
+            path: artillery-report/
           
-      - name: Create Artillery Playwright test report html file
-        run: |
-          artillery report report.json
+      - name: Display Artillery Report
+        uses: actions/github-script@v4
+        with:
+            script: | 
+                const fs = require('fs');
+
+                const reportPath = `${process.env.RUNNER_WORKSPACE}/artillery-report/report.json`;
+                const reportData = fs.readFileSync(reportPath, 'utf8');
+        
+                console.log(reportData);
 
 
       
