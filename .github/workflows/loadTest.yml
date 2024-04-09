@@ -29,6 +29,6 @@ jobs:
 
       - name: Run Artillery Playwright test
         run: |
-          artillery script C:\Users\Mario\Desktop\demo\artillery.yml
+          artillery run artillery.yml
     
       
