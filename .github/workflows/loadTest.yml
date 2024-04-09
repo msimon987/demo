@@ -30,5 +30,13 @@ jobs:
       - name: Run Artillery Playwright test
         run: |
           artillery run artillery.yml
+
+      - name: Create artillery json
+        run: |
+          artillery run artillery.yml --output report.json
+
+      - name: Create artillery html
+        run: |
+          artillery report report.json
     
       
