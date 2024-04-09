@@ -29,13 +29,6 @@ jobs:
 
       - name: Run Artillery Playwright test
         run: |
-          artillery run artillery.yml --output report.json
-
-      - name: Upload Artillery Report
-        uses: actions/upload-artifact@v2
-        with:
-            name: artillery-report
-            path: report.json
-        
+          artillery run artillery.yml
     
       
