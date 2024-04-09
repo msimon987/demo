@@ -1,0 +1,21 @@
+config:
+  target: https://test.k6.io/my_messages.php
+  engines:
+    playwright: {}
+  processor: "./tests/LoadTest/artillery/LoginTest.js"
+  phases:
+  # injects 100 users every second for 1 seconds
+    - name: constantArrival
+      duration: 1
+      arrivalRate: 100
+  # pause
+    - name: pause
+      pause: 5
+  # ramp up - ramps up the number of users from 1 to 15 in a period of 15 seconds
+    - name: rampUp
+      duration: 10
+      arrivalrate: 1
+      rampTo: 15
+scenarios:
+  - engine: playwright  
+    testFunction: "artilleryScript"
