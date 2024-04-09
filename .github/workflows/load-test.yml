@@ -11,9 +11,9 @@ jobs:
  
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
  
       - name: Execute load tests
-        uses: artilleryio/action-cli@v1
+        uses: artilleryio/action-cli@v4
         with:
           command: run tests/performance/socket-io.yml
