@@ -1,21 +1,35 @@
-name: Artillery Socket.IO Load Test
- 
+name: Artillery Playwright Test
+
 on:
   push:
     branches:
       - main
- 
+
 jobs:
-  artillery:
+  test:
+    timeout-minutes: 60
     runs-on: windows-latest
- 
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
- 
-      - name: Execute load tests
-        uses: artilleryio/action-cli@v2
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          command: artillery run artillery.yml
+          node-version: '20'
+
+      - name: Install Artillery
+        run: npm install -g artillery
+
+      - name: Install Playwright
+        run: npm install -g playwright
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Artillery Playwright test
+        run: |
+          artillery run artillery.yml
     
       
