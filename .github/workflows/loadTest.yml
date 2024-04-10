@@ -1,32 +1,21 @@
-name: Artillery Load Tests
-
+name: Artillery Socket.IO Load Test
+ 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-
+ 
 jobs:
-  load_test:
+  artillery:
     runs-on: windows-latest
-
+ 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-
-    - name: Install Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run Artillery load tests
-      run: artillery run artillery.yml
+      - name: Checkout repository
+        uses: actions/checkout@v2
+ 
+      - name: Execute load tests
+        uses: artilleryio/action-cli@v1
+        with:
+          command: artillery run artillery.yml
     
       
